@@ -4,7 +4,7 @@ const AWS = require ('aws-sdk');
 const zlib = require ('zlib');
 const readline = require ('readline');
 
-const writeStreamToFirehose = async (firehose, deliveryStreamName, lineStream, bufferSize) => {
+exports.writeStreamToFirehose = async (firehose, deliveryStreamName, lineStream, bufferSize) => {
     return new Promise((resolve, reject) => {
         let firehoseParams = { DeliveryStreamName: deliveryStreamName, Records: [] };
         const onFirehoseError = (err, data) => {if (err) console.log(err, err.stack)};
@@ -13,14 +13,16 @@ const writeStreamToFirehose = async (firehose, deliveryStreamName, lineStream, b
         lineStream.on('line', (line) => {
             recordsCount++;
             firehoseParams.Records.push({'Data': line});
-            if (firehoseParams.Records.length > bufferSize) {
+            if (firehoseParams.Records.length >= bufferSize) {
                 firehose.putRecordBatch(firehoseParams, onFirehoseError);
                 firehoseParams.Records = [];
             }
         });
 
         lineStream.on('close', () => {
-            firehose.putRecordBatch(firehoseParams, onFirehoseError);
+            if (firehoseParams.Records.length > 0) {
+                firehose.putRecordBatch(firehoseParams, onFirehoseError);
+            }
             resolve("processed "+ recordsCount +" records");
         });
 

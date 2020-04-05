@@ -1,0 +1,38 @@
+{
+  "name": "aws-firehose-s3-producer",
+  "description": "Stream files uploaded to AWS S3 to AWS Kinesis Firehose",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yannh/aws-firehose-s3-producer.git"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha 'test/*-test.js'"
+  },
+  "keywords": [
+    "firehose",
+    "s3",
+    "aws",
+    "kinesis",
+    "lambda"
+  ],
+  "author": "Yann Hamon",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/yannh/aws-firehose-s3-producer/issues"
+  },
+  "homepage": "https://github.com/yannh/aws-firehose-s3-producer/",
+  "dependencies": {
+    "aws-sdk": "^2.653.0"
+  },
+  "devDependencies": {
+    "sinon": "^9.0.1",
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1",
+    "sinon-chai": "^3.5.0"
+  }
+}
