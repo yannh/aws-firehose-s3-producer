@@ -6,7 +6,7 @@ files uploaded to a S3 bucket into AWS Kinesis Firehose.
 ![test](aws-firehose-s3-producer-diagram.png)
 
 Files are uploaded to a S3 bucket which is configured to publish notifications to SQS.
-SQS then triggers this lambda, which will parse the file and stream it to Firehose.
+SQS then triggers this lambda, which will read the file and stream it to Firehose.
 
 ## Features
 
