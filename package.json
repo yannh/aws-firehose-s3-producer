@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/yannh/aws-firehose-s3-producer/",
   "dependencies": {
-    "aws-sdk": "^2.653.0"
+    "aws-sdk": "^2.814.0"
   },
   "devDependencies": {
     "sinon": "^9.0.1",
